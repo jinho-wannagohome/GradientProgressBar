@@ -15,7 +15,12 @@ let package = Package(name: "GradientProgressBar",
                       targets: [
                           .target(name: "GradientProgressBar",
                                   dependencies: ["LightweightObservable"],
-                                  path: "GradientProgressBar/"),
+                                  path: "GradientProgressBar/",
+                                  linkerSettings: [
+                                      .unsafeFlags([
+                                          "-weak_framework", "SwiftUI",
+                                      ]),
+                                  ]),
                           .testTarget(name: "GradientProgressBarTests",
                                       dependencies: ["GradientProgressBar"],
                                       path: "Example/Tests/"),
