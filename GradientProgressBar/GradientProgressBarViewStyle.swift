@@ -6,8 +6,6 @@
 //  Copyright © 2022 Felix Mau. All rights reserved.
 //
 
-import SwiftUI
-
 // Workaround to fix `xcodebuild` errors when running `pod lib lint`, like e.g.:
 //
 // - `xcodebuild`: error: cannot find type 'Color' in scope
@@ -18,7 +16,10 @@ import SwiftUI
 // > does not support armv7 anymore.
 //
 // Source: https://stackoverflow.com/a/61954608
-#if arch(arm64) || arch(x86_64)
+#if canImport(SwiftUI) && (arch(arm64) || arch(x86_64))
+
+import SwiftUI
+
     /// A `ProgressViewStyle` showing a gradient.
     ///
     /// - Note: Requires **iOS 15**, due to the view-modifier `mask(alignment:_:)`.
